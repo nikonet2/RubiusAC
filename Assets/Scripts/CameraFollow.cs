@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -23,7 +24,13 @@ public class CameraFollow : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))//переключение между камерами нажатием V
+        //Прявязка камеры с появившемуся объекту (персонажу) после запуска !!!че по оптимизации - оно же постоянно проверяется?!!!
+        if (_target == null& SpawnPerson.activated == 1)
+        {
+            _target = SpawnPerson.SpawnedPerson.transform;
+        }
+        //Переключение между камерами нажатием V
+        if (Input.GetKeyDown(KeyCode.V))
         {
             _cameraFollow.enabled = !_cameraFollow.enabled;
             _cameraStatic.enabled = !_cameraStatic.enabled;
